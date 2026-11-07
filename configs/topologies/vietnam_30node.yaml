@@ -1,0 +1,86 @@
+name: vietnam_30node
+description: Separate scale-up profile transcribed from docs/Mo hinh.jpg.
+nodes:
+  - {id: "1", role: region, domain: hcm}
+  - {id: "2", role: region, domain: hcm}
+  - {id: "3", role: region, domain: da_nang}
+  - {id: "4", role: region, domain: ha_noi}
+  - {id: "5", role: region, domain: ha_noi}
+  - {id: "6", role: region, domain: ha_noi}
+  - {id: "7", role: metro, domain: hcm}
+  - {id: "8", role: metro, domain: hcm}
+  - {id: "9", role: metro, domain: hcm}
+  - {id: "10", role: metro, domain: da_nang}
+  - {id: "11", role: metro, domain: da_nang}
+  - {id: "12", role: metro, domain: ha_noi}
+  - {id: "13", role: metro, domain: ha_noi}
+  - {id: "14", role: metro, domain: ha_noi}
+  - {id: "15", role: metro, domain: ha_noi}
+  - {id: "16", role: metro, domain: ha_noi}
+  - {id: "17", role: backbone, domain: hcm}
+  - {id: "18", role: backbone, domain: hcm}
+  - {id: "19", role: backbone, domain: da_nang}
+  - {id: "20", role: backbone, domain: ha_noi}
+  - {id: "21", role: backbone, domain: ha_noi}
+  - {id: "22", role: backbone, domain: ha_noi}
+  - {id: "23", role: edge_dc, domain: hcm, compute_capacity_mbps: 70, queue_capacity_mb: 60}
+  - {id: "24", role: edge_dc, domain: hcm, compute_capacity_mbps: 70, queue_capacity_mb: 60}
+  - {id: "25", role: edge_dc, domain: hcm, compute_capacity_mbps: 70, queue_capacity_mb: 60}
+  - {id: "26", role: edge_dc, domain: da_nang, compute_capacity_mbps: 70, queue_capacity_mb: 60}
+  - {id: "27", role: edge_dc, domain: ha_noi, compute_capacity_mbps: 80, queue_capacity_mb: 70}
+  - {id: "28", role: edge_dc, domain: ha_noi, compute_capacity_mbps: 80, queue_capacity_mb: 70}
+  - {id: "29", role: central_dc, domain: hcm, compute_capacity_mbps: 220, queue_capacity_mb: 180}
+  - {id: "30", role: central_dc, domain: ha_noi, compute_capacity_mbps: 440, queue_capacity_mb: 360, primary: true}
+links:
+  - {source: "1", target: "7", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "2", target: "7", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "7", target: "8", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "7", target: "9", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "8", target: "9", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "3", target: "10", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "10", target: "11", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "4", target: "12", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "5", target: "13", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "6", target: "15", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "12", target: "13", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "13", target: "15", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "12", target: "14", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "13", target: "14", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "14", target: "16", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "15", target: "16", link_class: metro_internal, capacity_mbps: 100000, distance_km: 15, buffer_mb: 60}
+  - {source: "17", target: "18", link_class: backbone_access, capacity_mbps: 400000, distance_km: 30, buffer_mb: 240}
+  - {source: "18", target: "19", link_class: national_backbone, capacity_mbps: 400000, distance_km: 960, buffer_mb: 300}
+  - {source: "19", target: "20", link_class: national_backbone, capacity_mbps: 400000, distance_km: 760, buffer_mb: 300}
+  - {source: "20", target: "21", link_class: backbone_access, capacity_mbps: 400000, distance_km: 30, buffer_mb: 240}
+  - {source: "21", target: "22", link_class: backbone_access, capacity_mbps: 400000, distance_km: 30, buffer_mb: 240}
+  - {source: "18", target: "20", link_class: national_backbone, capacity_mbps: 400000, distance_km: 960, buffer_mb: 300}
+  - {source: "19", target: "21", link_class: national_backbone, capacity_mbps: 400000, distance_km: 760, buffer_mb: 300}
+  - {source: "18", target: "21", link_class: national_backbone, capacity_mbps: 400000, distance_km: 1450, buffer_mb: 300}
+  - {source: "8", target: "23", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "8", target: "24", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "9", target: "25", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "11", target: "26", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "12", target: "27", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "16", target: "28", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "23", target: "17", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "24", target: "18", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "25", target: "18", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "26", target: "19", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "27", target: "20", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "28", target: "22", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "24", target: "17", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "27", target: "21", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "29", target: "17", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "29", target: "18", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "30", target: "21", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+  - {source: "30", target: "22", link_class: dc_access, capacity_mbps: 400000, distance_km: 10, buffer_mb: 240}
+region_edge_map: {"1": "23", "2": "25", "3": "26", "4": "27", "5": "27", "6": "28"}
+central_dc: "30"
+edge_dcs: ["23", "24", "25", "26", "27", "28"]
+monitored_links: [1--7, 2--7, 10--3, 12--4, 18--19, 19--20]
+service_replicas:
+  svc_video: ["23", "24", "25", "26", "27", "28"]
+  svc_api: ["23", "24", "25", "26", "27", "28"]
+  svc_web: ["23", "24", "25", "26", "27", "28"]
+  svc_victim: ["23", "24", "25", "26", "27", "28"]
+  svc_external_profile: ["23", "24", "25", "26", "27", "28"]

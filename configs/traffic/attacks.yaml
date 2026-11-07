@@ -1,0 +1,8 @@
+version: bounded-research-profiles-v1
+network_io: false
+profiles:
+  udp_flood: {duration_s: [30, 120], high_packet_rate: true, high_byte_rate: true}
+  syn_flood: {duration_s: [30, 120], high_new_flow_rate: true, small_packets: true}
+  http_flood: {duration_s: [30, 120], victim_service: svc_victim, valid_form: true}
+  slow_rate_dos: {duration_s: [30, 120], low_rate: true, long_occupancy: true}
+  port_scan: {duration_s: [30, 120], hard_negative: true, raw_port_model_feature: false}

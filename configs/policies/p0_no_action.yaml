@@ -1,0 +1,7 @@
+name: P0
+kind: no_action
+threshold: 1.0
+shape_fraction: 0.0
+duration_windows: 0
+cooldown_windows: 0
+reroute_fraction: 0.0

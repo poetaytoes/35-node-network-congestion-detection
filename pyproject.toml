@@ -1,0 +1,96 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "congestion-lab"
+version = "0.1.0"
+description = "Reproducible paired centralized/distributed congestion-prediction simulator"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "project_sv research team" }]
+dependencies = [
+  "joblib>=1.4,<2",
+  "matplotlib>=3.9,<4",
+  "networkx>=3.3,<4",
+  "numpy>=1.26,<2.5",
+  "pandas>=2.2,<4",
+  "pyarrow>=17,<25",
+  "pydantic>=2.8,<3",
+  "PyYAML>=6,<7",
+  "rich>=13,<15",
+  "scikit-learn>=1.5,<2",
+  "scipy>=1.13,<1.18",
+  "seaborn>=0.13,<1",
+  "tabulate>=0.9,<1",
+  "typer>=0.12,<1",
+  "xgboost>=2.1,<4",
+]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2,<2",
+  "hypothesis>=6.100,<7",
+  "mypy>=1.11,<2",
+  "pandas-stubs>=2.2",
+  "pip-tools>=7.4,<8",
+  "pytest>=8.3,<10",
+  "pytest-cov>=5,<8",
+  "ruff>=0.6,<1",
+  "types-PyYAML>=6,<7",
+]
+external = ["scapy>=2.6,<3"]
+explain = ["shap>=0.46,<1"]
+
+[project.scripts]
+congestion-lab = "congestion_lab.cli:app"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.package-data]
+congestion_lab = ["py.typed"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
+markers = [
+  "slow: full-pipeline or model-grid tests",
+  "external: tests requiring external-profile data",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["congestion_lab"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["artifacts", "data", "results", "runs"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_ignores = true
+packages = ["congestion_lab"]
+
+[[tool.mypy.overrides]]
+module = [
+  "joblib.*",
+  "matplotlib.*",
+  "networkx.*",
+  "scipy.*",
+  "seaborn.*",
+  "sklearn.*",
+  "xgboost.*",
+]
+ignore_missing_imports = true

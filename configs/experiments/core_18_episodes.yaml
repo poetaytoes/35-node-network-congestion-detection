@@ -1,0 +1,31 @@
+name: core_18_episodes
+topology_path: configs/topologies/student_minimal.yaml
+output_root: runs
+root_seed: 20260814
+episode_duration_s: 720
+simulation_step_s: 1
+window_s: 5
+horizons: [1, 2, 4]
+primary_horizon: 2
+episodes: 18
+monitored_object_count: 8
+traffic:
+  base_arrival_rate: 1.05
+  zipf_alpha: 1.0
+  duration_shape: 2.2
+  duration_min_s: 15
+  duration_max_s: 120
+  bitrate_lognormal_mean: 14.3
+  bitrate_lognormal_sigma: 0.55
+  low_priority_fraction: 0.4
+congestion:
+  utilization_threshold: 0.8
+  queue_threshold: 0.7
+  loss_threshold: 0.01
+  delay_sla_ms: 40
+  persistence_windows: 2
+split:
+  train: [E01, E02, E04, E05, E07, E10, E11, E14, E15, E17]
+  validation: [E03, E06, E08, E12]
+  locked_test: [E09, E13, E16, E18]
+sealed: true

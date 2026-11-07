@@ -1,0 +1,15 @@
+name: declared_robustness_matrix
+base_experiment: configs/experiments/core_18_episodes.yaml
+validation_grid: compact_and_predeclared
+cross_topology_train_scopes: [centralized, distributed, combined]
+cross_topology_test_scopes: [centralized, distributed]
+ablations: [no_lag_rolling, no_queue, no_security_features]
+horizon_windows: [1, 2, 4]
+congestion_utilization_thresholds: [0.7, 0.8, 0.9]
+capacity_scales: [0.8, 1.2]
+unseen_locked_patterns:
+  - locked_unseen_shape
+  - locked_unseen_high
+  - locked_unseen_bursty
+  - locked_unseen_wide
+locked_hyperparameter_selection: false

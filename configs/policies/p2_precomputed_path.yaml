@@ -1,0 +1,8 @@
+name: P2
+kind: precomputed_alternate_path
+threshold: 0.6
+tau_low: 0.5
+shape_fraction: 0.0
+duration_windows: 2
+cooldown_windows: 2
+reroute_fraction: 0.15

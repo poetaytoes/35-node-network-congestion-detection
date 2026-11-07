@@ -1,0 +1,12 @@
+version: scenario-matrix-v1
+families:
+  S0_stable: {episodes: [E01, E02, E03]}
+  S1_gradual: {episodes: [E04, E05, E06]}
+  S2_flash_crowd: {episodes: [E07, E08, E09]}
+  S3_udp_syn_flood: {episodes: [E10, E11, E12, E13]}
+  S4_http_slow_rate: {episodes: [E14, E15, E16]}
+  S5_hard_negative: {episodes: [E17, E18]}
+split:
+  train: [E01, E02, E04, E05, E07, E10, E11, E14, E15, E17]
+  validation: [E03, E06, E08, E12]
+  locked_test: [E09, E13, E16, E18]

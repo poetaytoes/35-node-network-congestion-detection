@@ -1,0 +1,43 @@
+name: student_minimal
+description: Core topology from the authoritative Markdown and embedded topology figure.
+nodes:
+  - {id: R1, role: region, domain: region_1}
+  - {id: R2, role: region, domain: region_2}
+  - {id: R3, role: region, domain: region_3}
+  - {id: R4, role: region, domain: region_4}
+  - {id: PE1, role: metro, domain: region_1}
+  - {id: PE2, role: metro, domain: region_2}
+  - {id: PE3, role: metro, domain: region_3}
+  - {id: PE4, role: metro, domain: region_4}
+  - {id: B1, role: backbone, domain: backbone}
+  - {id: B2, role: backbone, domain: backbone}
+  - {id: B3, role: backbone, domain: backbone}
+  - {id: E1, role: edge_dc, domain: region_1, compute_capacity_mbps: 110, queue_capacity_mb: 90}
+  - {id: E2, role: edge_dc, domain: region_2, compute_capacity_mbps: 110, queue_capacity_mb: 90}
+  - {id: E3, role: edge_dc, domain: region_3_4, compute_capacity_mbps: 140, queue_capacity_mb: 110}
+  - {id: C0, role: central_dc, domain: backbone, compute_capacity_mbps: 360, queue_capacity_mb: 290, primary: true}
+links:
+  - {source: R1, target: PE1, link_class: access, capacity_mbps: 150, distance_km: 5, buffer_mb: 80}
+  - {source: R2, target: PE2, link_class: access, capacity_mbps: 150, distance_km: 5, buffer_mb: 80}
+  - {source: R3, target: PE3, link_class: access, capacity_mbps: 150, distance_km: 5, buffer_mb: 80}
+  - {source: R4, target: PE4, link_class: access, capacity_mbps: 150, distance_km: 5, buffer_mb: 80}
+  - {source: PE1, target: B1, link_class: metro_internal, capacity_mbps: 120, distance_km: 15, buffer_mb: 65}
+  - {source: PE2, target: B1, link_class: metro_internal, capacity_mbps: 120, distance_km: 15, buffer_mb: 65}
+  - {source: PE3, target: B1, link_class: metro_internal, capacity_mbps: 120, distance_km: 15, buffer_mb: 65}
+  - {source: PE4, target: B1, link_class: metro_internal, capacity_mbps: 120, distance_km: 15, buffer_mb: 65}
+  - {source: B1, target: B2, link_class: backbone_access, capacity_mbps: 285, distance_km: 30, buffer_mb: 170}
+  - {source: B2, target: B3, link_class: backbone_access, capacity_mbps: 285, distance_km: 30, buffer_mb: 170}
+  - {source: B1, target: E1, link_class: dc_access, capacity_mbps: 180, distance_km: 10, buffer_mb: 100}
+  - {source: B3, target: E2, link_class: dc_access, capacity_mbps: 180, distance_km: 10, buffer_mb: 100}
+  - {source: B1, target: E3, link_class: dc_access, capacity_mbps: 210, distance_km: 10, buffer_mb: 120}
+  - {source: B3, target: C0, link_class: dc_access, capacity_mbps: 390, distance_km: 10, buffer_mb: 250}
+region_edge_map: {R1: E1, R2: E2, R3: E3, R4: E3}
+central_dc: C0
+edge_dcs: [E1, E2, E3]
+monitored_links: [B1--PE1, B1--PE2, B1--PE3, B1--PE4, B1--B2, B2--B3]
+service_replicas:
+  svc_video: [E1, E2, E3]
+  svc_api: [E1, E2, E3]
+  svc_web: [E1, E2, E3]
+  svc_victim: [E1, E2, E3]
+  svc_external_profile: [E1, E2, E3]

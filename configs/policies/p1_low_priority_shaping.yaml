@@ -1,0 +1,8 @@
+name: P1
+kind: low_priority_shaping
+threshold: 0.5
+tau_low: 0.4
+shape_fraction: 0.15
+duration_windows: 2
+cooldown_windows: 1
+reroute_fraction: 0.0

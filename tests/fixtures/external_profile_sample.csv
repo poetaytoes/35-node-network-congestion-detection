@@ -1,0 +1,10 @@
+bitrate_bps,duration_s,protocol,label
+1200000,18,tcp,Benign
+2400000,42,udp,Benign
+80000,3,syn,SYN Flood
+4200000,2,udp,UDP Flood
+900000,14,http,HTTP Flood
+210000,96,tcp,Slowrate DoS
+18000,1,scan,SYN Scan
+15000,1,scan,TCP Connect Scan
+

@@ -1,0 +1,9 @@
+schema_version: "1.0"
+simulation_step_s: 1
+window_s: 5
+horizons: [1, 2, 4]
+primary_horizon: 2
+root_seed: 20260814
+notes: >-
+  Declarative common defaults. Executable experiment files repeat resolved values so
+  every run hash is self-contained and does not depend on implicit YAML inheritance.

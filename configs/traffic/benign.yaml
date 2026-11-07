@@ -1,0 +1,15 @@
+version: synthetic-flow-v1
+arrival_process: poisson
+service_popularity:
+  distribution: zipf
+  alpha_range: [0.8, 1.2]
+session_duration:
+  distribution: truncated_pareto
+  minimum_s: 15
+  maximum_s: 120
+bitrate:
+  distribution: lognormal
+service_catalog:
+  - {id: svc_video, default_class: low}
+  - {id: svc_api, default_class: high}
+  - {id: svc_web, default_class: high}

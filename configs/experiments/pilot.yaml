@@ -1,0 +1,31 @@
+name: pilot
+topology_path: configs/topologies/student_minimal.yaml
+output_root: runs
+root_seed: 20260814
+episode_duration_s: 120
+simulation_step_s: 1
+window_s: 5
+horizons: [1, 2, 4]
+primary_horizon: 2
+episodes: 2
+monitored_object_count: 8
+traffic:
+  base_arrival_rate: 1.05
+  zipf_alpha: 1.0
+  duration_shape: 2.2
+  duration_min_s: 15
+  duration_max_s: 90
+  bitrate_lognormal_mean: 14.3
+  bitrate_lognormal_sigma: 0.55
+  low_priority_fraction: 0.4
+congestion:
+  utilization_threshold: 0.8
+  queue_threshold: 0.7
+  loss_threshold: 0.01
+  delay_sla_ms: 40
+  persistence_windows: 2
+split:
+  train: [P01]
+  validation: [P02]
+  locked_test: []
+sealed: false
